@@ -25,10 +25,8 @@
 </body>
 </html>
 <?php
-/**
- * Created by PhpStorm.
- * User: ADVIRUS
- * Date: 26.10.2014
- * Time: 11:53
- */
+session_start();
+if (!isset($_SESSION['counter']))
+    $_SESSION['counter']=0;
+$_SESSION['counter']++;
 
