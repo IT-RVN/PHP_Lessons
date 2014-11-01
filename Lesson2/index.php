@@ -30,14 +30,64 @@ $GradientColors[] = implode(NULL, $HexRGB);
 return $GradientColors;
 }
 
-$Gradients = Gradient("FF5B5B", "FFCA5B", 50);
+$Gradients = Gradient("FF5B5B", "FFCA5B", 100);
 foreach($Gradients as $Gradient)
 {
-echo "<div style=\"background-color: #".$Gradient."; width: 100px; height: 25px;\"></div>";
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left;\"></div>";
 }
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
 
-$Gradients = Gradient("E50023", "EAF94D", 50);
+$Gradients = Gradient("FFCA5B", "EAF94D", 100);
 foreach($Gradients as $Gradient)
 {
-    echo "<div style=\"background-color: #".$Gradient."; width: 100px; height: 25px;\"></div>";
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("EAF94D", "CEBAFF", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("CEBAFF", "77FF3D", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("77FF3D", "FF5271", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("FF5271", "FFEBEB", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("FFEBEB", "4797FF", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("4797FF", "737373", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
+}
+echo "<div style=\"background-color: white; width: 1px; height: 50px; float: left;\"></div>";
+
+$Gradients = Gradient("737373", "000000", 100);
+foreach($Gradients as $Gradient)
+{
+    echo "<div style=\"background-color: #".$Gradient."; width: 1px; height: 50px; float: left\"></div>";
 }
