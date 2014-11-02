@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 function Gradient($HexFrom, $HexTo, $ColorSteps)
 {
 $FromRGB['r'] = hexdec(substr($HexFrom, 0, 2));
