@@ -5,12 +5,13 @@
  * Date: 02.11.2014
  * Time: 15:45
  */
+include_once "DBconnection.php";
 
 class DB {
     private $db;
     function  __construct()
     {
-        $this->db =  new PDO('mysql:host=localhost;dbname=users;charset=utf8', 'root', '1');
+        $this->db =  new PDO("mysql:host={$connection['host']};dbname={$connection['dbname']};charset=utf8", "{$connection['adminDB']}", "{$connection['passw']}");
         echo "obj created<br>";
     }
     function getData() {
