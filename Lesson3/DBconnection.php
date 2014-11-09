@@ -1,4 +1,5 @@
 <?php
+
 $connection = array(
     'host' => 'localhost',
     'dbname' => 'users',
