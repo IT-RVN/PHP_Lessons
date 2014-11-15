@@ -24,16 +24,19 @@
     if(isset($_FILES['fileName']['name']))
     {
         $uploadDir = __DIR__ . '/uploaded_files';
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
         if(is_uploaded_file($_FILES['fileName']['tmp_name']))
         {
             $success = move_uploaded_file($_FILES['fileName']['tmp_name'],
                 $uploadDir.'/'.$_FILES['fileName']['name']);
             if ($success) {
                 $filename = $_FILES['fileName']['name'];
-                echo 'File copied: '.$filename;
                 include_once 'Zip.php';
                 $ZIP = new Zip();
                 $ZIP->ExtractFile($filename);
+                showContent($uploadDir.'/Resources');
             }
             else {
                 echo 'File not copied';
@@ -48,3 +51,33 @@
     ?>
 </body>
 </html>
+
+<?php
+function showContent($path)
+{
+    if (file_exists($path)) {
+//        echo $path." - exists";
+    }
+    $regex = '#([^\s]+(\.(?i)(jpg|png|gif|bmp))$)#';
+    $regex_txt = '#([^\s]+(\.(?i)(txt))$)#';
+    $files = scanDir($path);
+
+    foreach($files as $file)
+    {
+        if($file != '.' && $file != '..')
+        {
+            if(preg_match($regex, $file))
+            {
+                echo "file[IMG] = ".$file."<br>";
+                echo '<img src="'.$file.'" height="100" width="100">';
+            }
+            else if(preg_match($regex_txt, $file))
+            {
+                echo "file[TXT] = ".$file."<br>";
+                $content = file_get_contents($file);
+//                $content = file_get_contents(__DIR__.'/uploaded_files'.'/Resources'.'/'.$file);
+                echo "<div style='border: 1px solid royalblue; border-radius: 2px'>".$content."</div>";
+            }
+        }
+    }
+}

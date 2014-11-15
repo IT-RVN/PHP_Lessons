@@ -11,7 +11,6 @@ class Zip {
         {
             if (!file_exists($resourcesDir)) {
                 mkdir($resourcesDir, 0777, true);
-                echo $resourcesDir." created Folder";
             }
             if ($zip->open($uploadDir.'/'.$file) === true) {
                 $zip->extractTo($resourcesDir.'/');
