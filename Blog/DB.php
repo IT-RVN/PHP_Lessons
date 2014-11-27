@@ -3,12 +3,16 @@ header('Content-Type: text/html; charset=utf-8');
 
 class DB {
     private $dbh;
+    private $salt;
     function  __construct()
     {
         include 'dbconnection.php';
         try {
             $this->dbh = new PDO("mysql:host={$connection['host']};dbname={$connection['dbname']};charset=utf8", "{$connection['adminDB']}", "{$connection['passw']}");
             $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $this->salt = $connection['pass_salt'];
+            $this->dbh->query("SET NAMES UTF8;");
         }
         catch (PDOException $ex)
         {
@@ -34,7 +38,7 @@ class DB {
     {
         try {
             $STH = $this->dbh->prepare("SELECT * FROM `user` WHERE Login = ? AND Password = ?");
-            $STH->execute([$login, $password]);
+            $STH->execute([$login, $this->hashPass($password)]);
 
             if ($STH->rowCount() > 0)
             {
@@ -55,9 +59,9 @@ class DB {
         return $result;
     }
 
-    function registryNewUser($user, $login, $passw)
+    function registryNewUser($user, $login, $pass)
     {
-        $data = array($user, $login, $passw);
+        $data = array($user, $login, $this->hashPass($pass));
         try {
             $STH = $this->dbh->prepare("INSERT INTO user(`User`, `Login`, `Password`) VALUES (?, ?, ?)");
             $STH->execute($data);
@@ -69,5 +73,10 @@ class DB {
         }
     }
 
+    function hashPass($pass)
+    {
+        $res = hash_hmac('sha512', $pass, $this->salt);
+        return $res;
+    }
 
 }
